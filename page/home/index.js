@@ -38,7 +38,7 @@ Page({
     // einzige Widget in seinem Bereich, kein Overlap moeglich. Home
     // zeigt jetzt nur noch Titel als Button-Label, die Werte gibt's
     // auf der jeweiligen Unterseite (die haben live Werte + Balken).
-    let y = px(112)
+    let y = px(84)
     this.buildCard({ y, title: getText('storage'), route: 'page/storage/index', disabled: !caps.disk })
 
     y += CARD_H + px(14)
@@ -52,19 +52,12 @@ Page({
   },
 
   buildHeader() {
-    text({
-      x: M,
-      y: px(36),
-      w: CARD_W,
-      h: px(40),
-      text: getText('appName'),
-      text_size: px(32),
-      color: COLOR.text,
-    })
-
+    // Der App-Name stand vorher hier nochmal extra, obwohl der
+    // Statusbalken (App-Name+Uhrzeit) ihn oben schon zeigt - Jan:
+    // "das kann weg". Nur noch der Akku-Stand bleibt als eigene Zeile.
     this.state.widgets.battery = text({
       x: M,
-      y: px(74),
+      y: px(36),
       w: CARD_W,
       h: px(30),
       text: '',

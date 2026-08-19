@@ -105,15 +105,15 @@ Page({
   // sie destruktiv.
   buildProbe(y) {
     // probeHint (de: "Reaktionsfaehigkeit ist ein Schaetzwert, keine
-    // CPU-Auslastung.") laeuft bei text_size 22 auf zwei Zeilen um, die
-    // Box war aber nur fuer eine Zeile hoch (px(34)) - der Button direkt
-    // darunter (y+44) ueberdeckte dadurch die zweite Zeile (Jans Foto:
-    // Text hinter "Messen" abgeschnitten). Box + Button-Abstand vergroessert.
+    // CPU-Auslastung.") laeuft bei text_size 22 in Wirklichkeit auf DREI
+    // Zeilen um, nicht zwei wie beim ersten Fix angenommen - Jans zweites
+    // Foto zeigte die dritte Zeile ("Auslastung") immer noch vom Button
+    // abgeschnitten. Grosszuegiger bemessen statt nochmal knapp zu raten.
     this.state.probe = text({
       x: M,
       y,
       w: W - M * 2,
-      h: px(64),
+      h: px(100),
       text: getText('probeHint'),
       text_size: px(22),
       color: COLOR.estimate,
@@ -122,7 +122,7 @@ Page({
 
     hmUI.createWidget(hmUI.widget.BUTTON, {
       x: M,
-      y: y + px(74),
+      y: y + px(110),
       w: W - M * 2,
       h: px(58),
       radius: px(29),

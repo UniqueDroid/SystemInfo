@@ -31,8 +31,14 @@ Page({
   },
 
   build() {
-    hmUI.setStatusBarVisible && hmUI.setStatusBarVisible(true)
-
+    // War die einzige Stelle im ganzen Projekt, die das ueberhaupt
+    // aufruft - Storage/Memory/Device rufen es nie und rendern
+    // korrekt. Genau die Home-Seite war es, deren Karten trotz
+    // mehrerer Farb-/Layout-Fixes komplett unsichtbar blieben. Der
+    // Statusbalken (App-Name+Uhrzeit oben) ist laut den Screenshots
+    // ohnehin auf jeder Seite immer da, auch ohne diesen Aufruf -
+    // vermutlich ein Geraete-/Firmware-Bug, bei dem er als opake
+    // Full-Screen-Overlay ueber allem landet statt nur oben.
     this.buildHeader()
 
     let y = px(112)

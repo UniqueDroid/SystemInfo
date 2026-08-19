@@ -104,11 +104,16 @@ Page({
   // Bewusst manuell: die Busy-Loop kostet spuerbar Akku, im Intervall waere
   // sie destruktiv.
   buildProbe(y) {
+    // probeHint (de: "Reaktionsfaehigkeit ist ein Schaetzwert, keine
+    // CPU-Auslastung.") laeuft bei text_size 22 auf zwei Zeilen um, die
+    // Box war aber nur fuer eine Zeile hoch (px(34)) - der Button direkt
+    // darunter (y+44) ueberdeckte dadurch die zweite Zeile (Jans Foto:
+    // Text hinter "Messen" abgeschnitten). Box + Button-Abstand vergroessert.
     this.state.probe = text({
       x: M,
       y,
       w: W - M * 2,
-      h: px(34),
+      h: px(64),
       text: getText('probeHint'),
       text_size: px(22),
       color: COLOR.estimate,
@@ -117,7 +122,7 @@ Page({
 
     hmUI.createWidget(hmUI.widget.BUTTON, {
       x: M,
-      y: y + px(44),
+      y: y + px(74),
       w: W - M * 2,
       h: px(58),
       radius: px(29),

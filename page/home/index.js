@@ -97,12 +97,29 @@ Page({
   },
 
   buildCard({ y, title, color, route, disabled = false, arrowOnly = false }) {
-    rect({ x: M, y, w: CARD_W, h: CARD_H, radius: px(16), color: COLOR.card })
+    // Border obendrauf, da FILL_RECT keinen eigenen Rahmen kennt - sonst
+    // verschwimmt die Karte auf AMOLED wieder mit dem schwarzen Hintergrund.
+    rect({
+      x: M,
+      y,
+      w: CARD_W,
+      h: CARD_H,
+      radius: px(16),
+      color: COLOR.cardBorder,
+    })
+    rect({
+      x: M + px(2),
+      y: y + px(2),
+      w: CARD_W - px(4),
+      h: CARD_H - px(4),
+      radius: px(14),
+      color: COLOR.card,
+    })
 
     text({
       x: M + px(20),
       y: y + px(12),
-      w: CARD_W - px(40),
+      w: CARD_W - px(70),
       h: px(30),
       text: title,
       text_size: px(24),
@@ -112,7 +129,7 @@ Page({
     const value = text({
       x: M + px(20),
       y: y + px(42),
-      w: CARD_W - px(40),
+      w: CARD_W - px(70),
       h: px(34),
       text: disabled ? getText('unavailable') : '…',
       text_size: px(28),
@@ -128,6 +145,20 @@ Page({
         h: px(8),
         color,
       })
+    } else if (!disabled) {
+      // arrowOnly-Karten (Device) hatten bisher keinerlei Tap-Hinweis, wo
+      // sonst der Balken sitzt - Pfeil als Ersatz, sonst wirkt die Karte
+      // leer statt tappbar.
+      text({
+        x: M + CARD_W - px(50),
+        y: y + px(30),
+        w: px(30),
+        h: CARD_H - px(60),
+        text: '›',
+        text_size: px(40),
+        color: COLOR.textDim,
+        align_h: hmUI.align.CENTER_H,
+      })
     }
 
     if (!disabled) {
@@ -137,7 +168,7 @@ Page({
         w: CARD_W,
         h: CARD_H,
         normal_color: 0x00000000,
-        press_color: 0x22222a,
+        press_color: 0x34343e,
         radius: px(16),
         text: '',
         click_func: () => push({ url: route }),

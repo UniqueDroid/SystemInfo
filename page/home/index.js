@@ -97,24 +97,28 @@ Page({
   },
 
   buildCard({ y, title, color, route, disabled = false, arrowOnly = false }) {
-    // Border obendrauf, da FILL_RECT keinen eigenen Rahmen kennt - sonst
-    // verschwimmt die Karte auf AMOLED wieder mit dem schwarzen Hintergrund.
-    rect({
-      x: M,
-      y,
-      w: CARD_W,
-      h: CARD_H,
-      radius: px(16),
-      color: COLOR.cardBorder,
-    })
-    rect({
-      x: M + px(2),
-      y: y + px(2),
-      w: CARD_W - px(4),
-      h: CARD_H - px(4),
-      radius: px(14),
-      color: COLOR.card,
-    })
+    // Erster Anlauf (rect als Kartenhintergrund + transparenter BUTTON
+    // obendrauf) blieb laut Jan auf dem echten Geraet trotzdem unsichtbar.
+    // Jetzt wie im SmartLock/Nuki-Projekt: der BUTTON selbst traegt die
+    // sichtbare Flaeche (dessen normal_color/press_color, dort erprobt
+    // und von Jan als gut sichtbar bestaetigt) - kein zusaetzliches Layer,
+    // keine Transparenz. Muss deshalb VOR Titel/Wert/Balken erzeugt werden,
+    // sonst liegt die Flaeche als oberste Ebene ueber dem Text.
+    if (!disabled) {
+      hmUI.createWidget(hmUI.widget.BUTTON, {
+        x: M,
+        y,
+        w: CARD_W,
+        h: CARD_H,
+        normal_color: COLOR.card,
+        press_color: COLOR.cardPress,
+        radius: px(16),
+        text: '',
+        click_func: () => push({ url: route }),
+      })
+    } else {
+      rect({ x: M, y, w: CARD_W, h: CARD_H, radius: px(16), color: COLOR.card })
+    }
 
     text({
       x: M + px(20),
@@ -158,20 +162,6 @@ Page({
         text_size: px(40),
         color: COLOR.textDim,
         align_h: hmUI.align.CENTER_H,
-      })
-    }
-
-    if (!disabled) {
-      hmUI.createWidget(hmUI.widget.BUTTON, {
-        x: M,
-        y,
-        w: CARD_W,
-        h: CARD_H,
-        normal_color: 0x00000000,
-        press_color: 0x34343e,
-        radius: px(16),
-        text: '',
-        click_func: () => push({ url: route }),
       })
     }
 

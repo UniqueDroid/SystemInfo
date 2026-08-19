@@ -97,28 +97,18 @@ Page({
   },
 
   buildCard({ y, title, color, route, disabled = false, arrowOnly = false }) {
-    // Erster Anlauf (rect als Kartenhintergrund + transparenter BUTTON
-    // obendrauf) blieb laut Jan auf dem echten Geraet trotzdem unsichtbar.
-    // Jetzt wie im SmartLock/Nuki-Projekt: der BUTTON selbst traegt die
-    // sichtbare Flaeche (dessen normal_color/press_color, dort erprobt
-    // und von Jan als gut sichtbar bestaetigt) - kein zusaetzliches Layer,
-    // keine Transparenz. Muss deshalb VOR Titel/Wert/Balken erzeugt werden,
-    // sonst liegt die Flaeche als oberste Ebene ueber dem Text.
-    if (!disabled) {
-      hmUI.createWidget(hmUI.widget.BUTTON, {
-        x: M,
-        y,
-        w: CARD_W,
-        h: CARD_H,
-        normal_color: COLOR.card,
-        press_color: COLOR.cardPress,
-        radius: px(16),
-        text: '',
-        click_func: () => push({ url: route }),
-      })
-    } else {
-      rect({ x: M, y, w: CARD_W, h: CARD_H, radius: px(16), color: COLOR.card })
-    }
+    // Button auf oberste Ebene mit eigenem Fuellcolor gesetzt (wie bei
+    // Nuki) machte den Tap-Bereich unzuverlaessig: die Text-/Balken-
+    // Widgets, die danach ueber den Button gezeichnet wurden, um
+    // ueberhaupt sichtbar zu sein, schluckten dort die Touches - Jan
+    // musste mehrfach draufklicken. Zepp OS liefert Touch an das
+    // oberste Widget an dieser Stelle, unabhaengig davon, ob es einen
+    // click_func hat.
+    // Zurueck zur urspruenglichen Reihenfolge (Rect -> Text/Balken ->
+    // transparenter BUTTON ganz oben = 100% zuverlaessige Flaeche),
+    // aber mit Nukis erprobtem Farbwert fuer den Rect statt dem zu
+    // dunklen ersten Versuch (0x24242e).
+    rect({ x: M, y, w: CARD_W, h: CARD_H, radius: px(16), color: COLOR.card })
 
     text({
       x: M + px(20),
@@ -162,6 +152,20 @@ Page({
         text_size: px(40),
         color: COLOR.textDim,
         align_h: hmUI.align.CENTER_H,
+      })
+    }
+
+    if (!disabled) {
+      hmUI.createWidget(hmUI.widget.BUTTON, {
+        x: M,
+        y,
+        w: CARD_W,
+        h: CARD_H,
+        normal_color: 0x00000000,
+        press_color: COLOR.cardPress,
+        radius: px(16),
+        text: '',
+        click_func: () => push({ url: route }),
       })
     }
 

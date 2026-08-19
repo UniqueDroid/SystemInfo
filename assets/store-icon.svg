@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#20232b" />
+      <stop offset="100%" stop-color="#121418" />
+    </linearGradient>
+  </defs>
+
+  <!-- Store-listing icon: 240x240, full-bleed circle, no transparent
+       margin (different spec from the in-app device icon, which keeps
+       a 4px margin per docs.zepp.com/docs/designs/visual/icons/). -->
+  <circle cx="120" cy="120" r="120" fill="url(#bgGrad)" />
+
+  <g stroke-linecap="round">
+    <rect x="68" y="142" width="20" height="46" rx="6" fill="#4a9eff" />
+    <rect x="110" y="108" width="20" height="80" rx="6" fill="#ff9f0a" />
+    <rect x="152" y="78" width="20" height="110" rx="6" fill="#38c98d" />
+  </g>
+</svg>

@@ -41,6 +41,10 @@ Page({
       title: getText('storage'),
       color: COLOR.app,
       route: 'page/storage/index',
+      // Was missing (19.08.2026, Jan's real-device test - card stuck on
+      // "..." forever with no explanation) - the memory card right below
+      // already does this, storage just never got the same treatment.
+      disabled: !caps.disk,
     })
 
     y += CARD_H + px(14)

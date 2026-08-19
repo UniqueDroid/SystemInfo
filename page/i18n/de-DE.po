@@ -1,0 +1,62 @@
+msgid "appName"
+msgstr "SystemInfo"
+
+msgid "storage"
+msgstr "Speicher"
+
+msgid "memory"
+msgstr "Arbeitsspeicher"
+
+msgid "device"
+msgstr "Gerät"
+
+msgid "battery"
+msgstr "Akku"
+
+msgid "free"
+msgstr "frei"
+
+msgid "app"
+msgstr "Apps"
+
+msgid "watchface"
+msgstr "Watchfaces"
+
+msgid "music"
+msgstr "Musik"
+
+msgid "system"
+msgstr "System"
+
+msgid "other"
+msgstr "Sonstiges"
+
+msgid "unavailable"
+msgstr "Auf diesem Gerät nicht verfügbar"
+
+msgid "memoryNeedsApi4"
+msgstr "RAM-Daten gibt Zepp OS erst ab API-Level 4.0 frei. Diese Uhr liefert sie nicht."
+
+msgid "probeHint"
+msgstr "Reaktionsfähigkeit ist ein Schätzwert, keine CPU-Auslastung."
+
+msgid "runProbe"
+msgstr "Messen"
+
+msgid "responsiveness"
+msgstr "Reaktionsfähigkeit"
+
+msgid "model"
+msgstr "Modell"
+
+msgid "screen"
+msgstr "Display"
+
+msgid "shape"
+msgstr "Form"
+
+msgid "apiLevel"
+msgstr "API-Level"
+
+msgid "osVersion"
+msgstr "Firmware"

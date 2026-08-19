@@ -1,0 +1,62 @@
+msgid "appName"
+msgstr "SystemInfo"
+
+msgid "storage"
+msgstr "Storage"
+
+msgid "memory"
+msgstr "Memory"
+
+msgid "device"
+msgstr "Device"
+
+msgid "battery"
+msgstr "Battery"
+
+msgid "free"
+msgstr "free"
+
+msgid "app"
+msgstr "Apps"
+
+msgid "watchface"
+msgstr "Watchfaces"
+
+msgid "music"
+msgstr "Music"
+
+msgid "system"
+msgstr "System"
+
+msgid "other"
+msgstr "Other"
+
+msgid "unavailable"
+msgstr "Not available on this device"
+
+msgid "memoryNeedsApi4"
+msgstr "Zepp OS exposes RAM data from API level 4.0 onwards. This watch does not provide it."
+
+msgid "probeHint"
+msgstr "Responsiveness is an estimate, not CPU load."
+
+msgid "runProbe"
+msgstr "Measure"
+
+msgid "responsiveness"
+msgstr "Responsiveness"
+
+msgid "model"
+msgstr "Model"
+
+msgid "screen"
+msgstr "Screen"
+
+msgid "shape"
+msgstr "Shape"
+
+msgid "apiLevel"
+msgstr "API level"
+
+msgid "osVersion"
+msgstr "Firmware"
